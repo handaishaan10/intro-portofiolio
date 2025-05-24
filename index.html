@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initiating | Ishaan Handa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --glitch-color-1: #00ffff;
+            --glitch-color-2: #ff00ff;
+            --glitch-color-3: #ffff00;
+            --text-color: #e0e0e0;
+            --bg-dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background-color: var(--bg-dark);
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        .background-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(0deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+            animation: gridFadeIn 2s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes gridFadeIn {
+            from { opacity: 0; }
+            to { opacity: 0.1; }
+        }
+
+        .glitch-container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeInScale 2s ease-out forwards;
+            animation-delay: 1.5s;
+        }
+
+        .glitch-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            color: var(--text-color);
+            text-shadow: 0 0 5px var(--glitch-color-1),
+                         0 0 10px var(--glitch-color-2);
+            animation: glitchEffect 1s infinite alternate step-end,
+                       portalExpand 1.5s ease-in-out forwards;
+            animation-delay: 3s, 5s;
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes glitchEffect {
+            0% { text-shadow: 0 0 5px var(--glitch-color-1), 0 0 10px var(--glitch-color-2); transform: skewX(0); }
+            20% { text-shadow: 2px 2px 5px var(--glitch-color-1), -2px -2px 10px var(--glitch-color-2); transform: skewX(5deg); }
+            40% { text-shadow: -2px -2px 5px var(--glitch-color-3), 2px 2px 10px var(--glitch-color-1); transform: skewX(-5deg); }
+            60% { text-shadow: 0 0 5px var(--glitch-color-2), 0 0 10px var(--glitch-color-3); transform: skewX(0); }
+            80% { text-shadow: 3px -3px 5px var(--glitch-color-1), -3px 3px 10px var(--glitch-color-2); transform: skewX(10deg); }
+            100% { text-shadow: -1px 1px 5px var(--glitch-color-3), 1px -1px 10px var(--glitch-color-1); transform: skewX(-10deg); }
+        }
+
+        @keyframes portalExpand {
+            0% { transform: scale(1); opacity: 1; filter: blur(0); }
+            50% { transform: scale(1.5); opacity: 0.8; filter: blur(5px); }
+            100% { transform: scale(20); opacity: 0; filter: blur(10px); }
+        }
+
+        .fade-out-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-dark);
+            z-index: 3;
+            opacity: 0;
+            animation: fadeOut 1s ease-out forwards;
+            animation-delay: 6.5s;
+            pointer-events: none;
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-grid"></div>
+    <div class="glitch-container">
+        <div class="glitch-text">ACCESS GRANTED</div>
+    </div>
+    <div class="fade-out-overlay"></div>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = "https://ishaan-handa.vercel.app";
+        }, 7500);
+    </script>
+</body>
+</html>
